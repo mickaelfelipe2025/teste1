@@ -2,115 +2,459 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agendamento Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Convite — Ana Alyce (5 anos) | Guerreiras do Kapo</title>
+
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f6f8;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg1:#070A12;
+      --bg2:#0E1430;
+      --card: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.14);
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.7);
+      --gold:#F6D47A;
+      --pink:#FF7AC3;
+      --cyan:#65E6FF;
+      --ok:#7CFFB2;
+      --danger:#FF6B6B;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 22px;
     }
-    .container {
-      max-width: 520px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      min-height:100vh;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(101,230,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 25%, rgba(255,122,195,.16), transparent 60%),
+        radial-gradient(800px 600px at 40% 90%, rgba(246,212,122,.10), transparent 60%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
+
+    /* Partículas (estrelas) */
+    .stars::before, .stars::after{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.65) 40%, transparent 41%),
+        radial-gradient(1px 1px at 70% 55%, rgba(255,255,255,.55) 40%, transparent 41%),
+        radial-gradient(2px 2px at 85% 15%, rgba(255,255,255,.45) 40%, transparent 41%),
+        radial-gradient(1px 1px at 35% 80%, rgba(255,255,255,.40) 40%, transparent 41%),
+        radial-gradient(2px 2px at 55% 20%, rgba(255,255,255,.35) 40%, transparent 41%),
+        radial-gradient(1px 1px at 10% 65%, rgba(255,255,255,.35) 40%, transparent 41%);
+      background-size: 600px 600px;
+      animation: drift 22s linear infinite;
+      pointer-events:none;
+      opacity:.55;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,.12));
     }
-    p.subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 24px;
+    .stars::after{
+      background-size: 900px 900px;
+      animation-duration: 35s;
+      opacity:.35;
     }
-    label {
-      display: block;
+    @keyframes drift{
+      from{ transform:translate3d(0,0,0) }
+      to{ transform:translate3d(120px, 80px, 0) }
+    }
+
+    .wrap{
+      width:min(980px, 92vw);
+      margin: 28px auto 60px;
+    }
+
+    .top{
+      display:grid;
+      gap:16px;
+      align-items:start;
+    }
+
+    .hero{
+      position:relative;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      padding: 22px 18px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius: 999px;
+      background: rgba(246,212,122,.14);
+      border:1px solid rgba(246,212,122,.25);
+      color: var(--gold);
+      font-weight:700;
+      letter-spacing:.2px;
+      width: fit-content;
+    }
+    .badge span{
+      display:inline-block;
+      width:9px;height:9px;
+      border-radius:50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(246,212,122,.12);
+    }
+
+    .title{
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 4.6vw, 44px);
+      line-height:1.05;
+      letter-spacing:-.5px;
+    }
+    .subtitle{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15.5px;
+      max-width: 70ch;
+    }
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 860px){
+      .heroGrid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .cardHead{
+      padding:14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .cardHead h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      color: rgba(234,240,255,.9);
+    }
+    .spark{
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
+      color: rgba(234,240,255,.7);
+      font-size: 12.5px;
+    }
+    .spark i{
+      width:8px;height:8px;border-radius:50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 6px rgba(101,230,255,.10);
+    }
+
+    .cardBody{ padding: 16px; }
+
+    .eventLine{
+      display:flex;
+      gap:12px;
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(0,0,0,.12);
+      margin-bottom: 10px;
+    }
+    .icon{
+      width:38px;height:38px;
+      border-radius: 12px;
+      display:grid;place-items:center;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      font-size: 18px;
+    }
+    .eventLine b{ display:block; font-size: 13px; color: rgba(234,240,255,.9) }
+    .eventLine span{ display:block; font-size: 13px; color: var(--muted) }
+
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(234,240,255,.88);
+      font-size: 12.5px;
+    }
+
+    .form{
+      display:grid;
+      gap: 12px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 640px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    label{
+      display:block;
+      font-size: 12.5px;
+      color: rgba(234,240,255,.85);
+      margin: 0 0 6px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+      transition: .15s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(101,230,255,.55);
+      box-shadow: 0 0 0 6px rgba(101,230,255,.10);
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+    }
+    button{
+      cursor:pointer;
+      border:0;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-weight: 800;
+      letter-spacing:.2px;
+      color: #071018;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      box-shadow: 0 16px 30px rgba(0,0,0,.25);
+      transition: transform .08s ease, filter .2s ease;
+    }
+    button:active{ transform: translateY(1px); }
+    button.secondary{
+      background: rgba(255,255,255,.08);
+      color: rgba(234,240,255,.92);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:none;
+      font-weight:700;
+    }
+
+    .toast{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      display:none;
+    }
+    .toast.ok{ border-color: rgba(124,255,178,.35); }
+    .toast.err{ border-color: rgba(255,107,107,.35); }
+    .toast b{ display:block; margin-bottom:4px }
+    .footerNote{
       margin-top: 14px;
-      font-weight: bold;
-    }
-    input, select, textarea, button {
-      width: 100%;
-      margin-top: 6px;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-    textarea {
-      resize: vertical;
-    }
-    button {
-      margin-top: 24px;
-      background: #25D366;
-      color: #fff;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #1ebc59;
-    }
-    .footer-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #777;
-      text-align: center;
+      color: rgba(234,240,255,.6);
+      font-size: 12.5px;
     }
   </style>
 </head>
-<body>
 
-  <div class="container">
-    <h1>Agende seu Horário</h1>
-    <p class="subtitle">Preencha os dados abaixo para confirmar seu agendamento</p>
+<body class="stars">
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge"><span></span> Missão de Aniversário</div>
+      <h1 class="title">Guerreiras do Kapo: <span style="color:var(--gold)">Ana Alyce</span> faz <span style="color:var(--pink)">5 anos</span>!</h1>
+      <p class="subtitle">
+        Você foi convocado(a) para uma aventura mágica cheia de coragem, amizade e diversão.
+        Confirme sua presença para entrar para a equipe de heróis do Kapo! ✨🛡️
+      </p>
 
-    <!-- DADOS DO CLIENTE -->
-    <label for="nome">Nome completo</label>
-    <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" />
+      <div class="heroGrid">
+        <div class="card">
+          <div class="cardHead">
+            <h3>Detalhes da missão</h3>
+            <div class="spark"><i></i> Tema aventura</div>
+          </div>
+          <div class="cardBody">
+            <div class="eventLine">
+              <div class="icon">📅</div>
+              <div>
+                <b>Data</b>
+                <span>03/05/2026</span>
+              </div>
+            </div>
+            <div class="eventLine">
+              <div class="icon">📍</div>
+              <div>
+                <b>Local</b>
+                <span>Trav. Boa Viagem — na minha casa</span>
+              </div>
+            </div>
+            <div class="eventLine">
+              <div class="icon">🕓</div>
+              <div>
+                <b>Horário</b>
+                <span>(coloque o horário aqui — ex: 16:00)</span>
+              </div>
+            </div>
 
-    <label for="telefone">Telefone / WhatsApp</label>
-    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" />
+            <div class="pillRow">
+              <div class="pill">🛡️ Missão: Festa de 5 anos</div>
+              <div class="pill">✨ Fantasia & aventura</div>
+              <div class="pill">🎁 Traga sua energia heroica</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- SERVIÇO -->
-    <label for="servico">Serviço desejado</label>
-    <select id="servico" name="servico">
-      <option value="">Selecione um serviço</option>
-      <option value="corte">Corte de cabelo</option>
-      <option value="barba">Barba</option>
-      <option value="corte_barba">Corte + Barba</option>
-    </select>
+        <div class="card">
+          <div class="cardHead">
+            <h3>Confirmação (RSVP)</h3>
+            <div class="spark"><i></i> leva 20s</div>
+          </div>
+          <div class="cardBody">
+            <form id="rsvp" class="form">
+              <input type="hidden" name="nomeCrianca" value="Ana Alyce Santos Silva">
+              <input type="hidden" name="idadeCrianca" value="5">
+              <input type="hidden" name="dataEvento" value="03/05/2026">
+              <input type="hidden" name="localEvento" value="Trav. Boa Viagem — na minha casa">
 
-    <!-- DATA E HORA -->
-    <label for="data">Data</label>
-    <input type="date" id="data" name="data" />
+              <div>
+                <label>Nome do convidado(a) *</label>
+                <input name="nomeConvidado" placeholder="Ex: Maria Eduarda" required />
+              </div>
 
-    <label for="hora">Horário</label>
-    <select id="hora" name="hora">
-      <option value="">Selecione um horário</option>
-      <option>09:00</option>
-      <option>10:00</option>
-      <option>11:00</option>
-      <option>14:00</option>
-      <option>15:00</option>
-      <option>16:00</option>
-    </select>
+              <div class="grid2">
+                <div>
+                  <label>Idade do convidado(a) (opcional)</label>
+                  <input name="idadeConvidado" inputmode="numeric" placeholder="Ex: 6" />
+                </div>
+                <div>
+                  <label>Presença *</label>
+                  <select name="presenca" required>
+                    <option value="" selected disabled>Selecione…</option>
+                    <option>SIM ✅</option>
+                    <option>TALVEZ 🤔</option>
+                    <option>NÃO ❌</option>
+                  </select>
+                </div>
+              </div>
 
-    <!-- OBSERVAÇÕES -->
-    <label for="obs">Observações (opcional)</label>
-    <textarea id="obs" name="obs" rows="3" placeholder="Ex: Chegarei 10 minutos atrasado"></textarea>
+              <div class="grid2">
+                <div>
+                  <label>Nome do responsável (opcional)</label>
+                  <input name="nomeResponsavel" placeholder="Ex: Juliana Santos" />
+                </div>
+                <div>
+                  <label>Telefone (opcional)</label>
+                  <input name="telefone" inputmode="tel" placeholder="Ex: (98) 9 9999-9999" />
+                </div>
+              </div>
 
-    <!-- BOTÃO -->
-    <button type="button">Confirmar Agendamento</button>
+              <div>
+                <label>Observações (opcional)</label>
+                <textarea name="obs" placeholder="Alergias, restrições alimentares, recado…"></textarea>
+              </div>
 
-    <p class="footer-note">
-      Ao confirmar, você autoriza o envio das informações do agendamento via WhatsApp.
-    </p>
+              <div class="btnRow">
+                <button type="submit">Confirmar presença 🗡️✨</button>
+                <button type="button" class="secondary" id="limpar">Limpar</button>
+              </div>
+
+              <div id="toast" class="toast">
+                <b id="toastTitle"></b>
+                <div id="toastMsg"></div>
+              </div>
+
+              <div class="footerNote">
+                Ao confirmar, a organização recebe automaticamente no Telegram.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
+  <script>
+    // Cole aqui a URL do seu Web App do Apps Script (Implantação)
+    const ENDPOINT = "COLE_AQUI_A_URL_DO_SEU_WEB_APP";
+
+    const form = document.getElementById("rsvp");
+    const toast = document.getElementById("toast");
+    const toastTitle = document.getElementById("toastTitle");
+    const toastMsg = document.getElementById("toastMsg");
+    const btnLimpar = document.getElementById("limpar");
+
+    function showToast(type, title, msg){
+      toast.className = "toast " + (type === "ok" ? "ok" : "err");
+      toastTitle.textContent = title;
+      toastMsg.textContent = msg;
+      toast.style.display = "block";
+    }
+
+    btnLimpar.addEventListener("click", () => {
+      form.reset();
+      toast.style.display = "none";
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      toast.style.display = "none";
+
+      if(!ENDPOINT || ENDPOINT.includes("COLE_AQUI")){
+        showToast("err","Falta configurar","Cole a URL do Web App (ENDPOINT) no HTML.");
+        return;
+      }
+
+      const fd = new FormData(form);
+      const payload = Object.fromEntries(fd.entries());
+
+      // Normalização leve
+      payload.nomeCrianca = payload.nomeCrianca || "Ana Alyce Santos Silva";
+      payload.idadeCrianca = payload.idadeCrianca || "5";
+
+      try{
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const json = await res.json().catch(() => ({}));
+        if(res.ok && json.ok){
+          showToast("ok","Confirmado! 🛡️",
+            "Sua confirmação foi registrada. Nos vemos na aventura da Ana Alyce!");
+          form.reset();
+        }else{
+          showToast("err","Ops…","Não consegui registrar agora. Tente novamente.");
+        }
+      }catch(err){
+        showToast("err","Sem conexão","Verifique sua internet e tente novamente.");
+      }
+    });
+  </script>
 </body>
 </html>
